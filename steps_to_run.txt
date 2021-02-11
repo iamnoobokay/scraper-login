@@ -1,0 +1,15 @@
+Step1:Create virtualenv(venv)
+python3 -m venv my_env
+
+Step2:cd into my_env/bin
+cd ./my_env/bin
+
+Step3:activate source
+source activate
+
+Step 4: cd back to root
+cd ..
+cd ..
+
+Step 5:install dependencies
+pip install -r requirement.txt
