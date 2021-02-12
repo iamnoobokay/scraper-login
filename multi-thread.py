@@ -127,7 +127,7 @@ if __name__ == "__main__":
         links.append(link['href'])
 
     #Scrape links from second to page 87(this has not been threaded)
-    for i in range(2,3):
+    for i in range(2,88):
         print("Scraping links from page: "+str(i))
         currentLink = 'https://www.heise.de/forum/my-postings/page-'+str(i)+'/'
         br.open(currentLink)
