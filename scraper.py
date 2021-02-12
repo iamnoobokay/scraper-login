@@ -31,14 +31,16 @@ br.form['password'] = 'Titanium22'
 #submit
 br.submit()
 
-#Scrape links from first page
+Scrape links from first page
 br.open('https://www.heise.de/forum/my-postings/')
 soup = BeautifulSoup(br.response(),'html.parser')
 
 links = soup.findAll("a",{"class":"posting_written_by_user_642562"})
 
+# links = []
+
 #Scrape links from second to page 87(Please change it to a lower value too slow)
-for i in range(2,88):
+for i in range(17,51):
     print("Scraping links from page: "+str(i))
     currentLink = 'https://www.heise.de/forum/my-postings/page-'+str(i)+'/'
     br.open(currentLink)
@@ -70,16 +72,24 @@ with open('data.csv', 'w',) as csvfile:
         outputSoup=BeautifulSoup(br.response(),'html.parser')
 
         #get date
-        date = outputSoup.find("time",{"class":"posting_timestamp"}).text.strip()
+        date_result = outputSoup.find("time",{"class":"posting_timestamp"})
+        date = date_result.text.strip() if date_result else "N/A"
 
         #get name
-        name = outputSoup.find("span",{"class":"pseudonym"}).text.strip()
+        name_result = outputSoup.find("span",{"class":"pseudonym"})
+        name = name_result.text.strip() if name_result else "N/A"
 
         #get title
-        title = outputSoup.find("h1",{"class":"thread_title"}).find("a").text.strip()
-
+        title_result = outputSoup.find("h1",{"class":"thread_title"}).find("a")
+        title = title_result.text.strip() if title_result else "N/A"
+        
         #get_body
-        body = outputSoup.find("div",{"class":"bbcode_v1"}).find("p").text.strip()
+        body_result = outputSoup.find("div",{"class":"bbcode_v1"})
+        body_p = body_result.find("p") if body_result else "N/A"
+        if body_p != "N/A":
+            body = body_p.text.strip()
+        else:
+            body = "N/A"
 
         #write data to csv
         writer.writerow([date, name, title, body])
@@ -90,6 +100,6 @@ with open('data.csv', 'w',) as csvfile:
         j=j+1
 
 #close file
-writer.close()
+# writer.close()
 
     
