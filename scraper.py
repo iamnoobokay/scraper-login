@@ -1,3 +1,5 @@
+#THIS DOES NOT USE MULTITHREADING AND IS SLOW
+
 #Imports
 from bs4 import BeautifulSoup
 import http.cookiejar
@@ -23,10 +25,10 @@ for form in br.forms():
         break
 
 #set username
-br.form['username'] = 'lunokhod@protonmail.ch'
+br.form['username'] = ''
 
 #set password
-br.form['password'] = 'Titanium22'
+br.form['password'] = ''
 
 #submit
 br.submit()

@@ -1,3 +1,5 @@
+#THIS USES MULTITHREADING AND IS FAST
+
 import concurrent.futures
 import threading
 import time
@@ -108,9 +110,9 @@ if __name__ == "__main__":
             break
 
     #set username
-    br.form['username'] = 'lunokhod@protonmail.ch'
+    br.form['username'] = ''
     #set password
-    br.form['password'] = 'Titanium22'
+    br.form['password'] = ''
     #submit
     br.submit()
 
@@ -147,7 +149,7 @@ if __name__ == "__main__":
 
     #calling function
     download_all_sites(links)
-
+    
     #duration
     duration = time.time() - start_time
     print(f"Scraped {len(links)} in {duration} seconds")
